@@ -15,7 +15,7 @@ class TemperatureConverter extends Component {
     if (this.isNumber(value)) {
       this.setState({
         celsius: value,
-        fahrenheit: value * (9/5) + 32
+        fahrenheit: this.roundOff( value * (9/5) + 32 )
       });
     }
   }
@@ -25,7 +25,7 @@ class TemperatureConverter extends Component {
 
     if (this.isNumber(value)) {
       this.setState({
-        celsius:  (value - 32) * (5/9),
+        celsius: this.roundOff( (value - 32) * (5/9) ),
         fahrenheit: value
       });
     }
@@ -39,12 +39,16 @@ class TemperatureConverter extends Component {
   }
 
   isNumber(value) {
-    const re = /^[0-9]+$/;
+    const re = /^-?[0-9]+?$/;
     return value.match(re);
   }
 
   handleFocus(e) {
     e.target.select();
+  }
+
+  roundOff(value) {
+    return +value.toFixed(2)
   }
 
   render() {
