@@ -7,7 +7,7 @@ class Timer extends Component {
       date: new Date(),
       initialDate: new Date(),
       elapsedTime: 0,
-      duration: 15
+      duration: 22
     };
     this.handleResetButtonClick = this.handleResetButtonClick.bind(this);
     this.handleDurationChange = this.handleDurationChange.bind(this);
@@ -29,12 +29,12 @@ class Timer extends Component {
   startTimer() {
     this.timerID = setInterval(
       () => this.tick(),
-      100
+      10
     );
   }
 
   tick() {
-    if (this.state.elapsedTime.toFixed(1) < parseFloat(this.state.duration)) {
+    if (this.state.elapsedTime.toFixed(1) <= parseFloat(this.state.duration)) {
       this.setState({
         date: new Date(),
         elapsedTime: (this.state.date.getTime() - this.state.initialDate.getTime()) / 1000
@@ -67,7 +67,9 @@ class Timer extends Component {
   }
 
   render() {    
-    const progressBarWidth = Math.min((this.state.elapsedTime / this.state.duration) * 100, 100);
+    const { elapsedTime, duration } = this.state
+    const progressBarWidth = Math.min((elapsedTime / duration) * 100, 100);
+    console.log(progressBarWidth)
 
     return (
       <div>
@@ -77,13 +79,13 @@ class Timer extends Component {
             <div style={{backgroundColor: 'cyan', height: 20 + 'px', width: progressBarWidth + '%'}}></div>            
           </div>
         </div>
-        <h3>{this.state.elapsedTime.toFixed(1)}s</h3>
+        <h3>{elapsedTime.toFixed(1)}s</h3>
         <div>
           <label>Duration: </label>
           <input 
             type="range" 
             value={this.state.duration} 
-            min="5" 
+            min="15" 
             max="30"
             onChange={this.handleDurationChange} 
           />
