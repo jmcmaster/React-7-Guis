@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
 
-// The task is to build a frame containing:
-//  - combobox C with the two options “one-way flight” and “return flight”, 
-//  - two textfields T1 and T2 representing the start and return date, respectively, 
-//  - button B for “submitting” the selected flight. 
-//
-// 1. T2 is enabled if C's value is “return flight”. 
-// 2. When C has the value “return flight” and T2's date is strictly before T1's then B is disabled. 
-// 3. When a non-disabled textfield T has an ill-formatted date then T is colored red and B is disabled. 
-// 4. When clicking B a message is displayed informing the user of his selection (e.g. “You have booked a 
-//    one-way flight on 04.04.2014.”). 
-//
-// Initially, C has the value “one-way flight” and T1 as well as T2 have the same (arbitrary) date (it is implied that T2 is disabled).
-
 class FlightBooker extends Component {
   constructor(props) {
     super(props)
@@ -67,6 +54,9 @@ class FlightBooker extends Component {
         break;
       case 'round-trip-flight':
         message = `You have booked a round trip flight that departs on ${this.state.departDate} and returns on ${this.state.returnDate}`;
+        break;
+      default:
+        message = 'You have booked a flight' 
         break;
     }
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Counter from './components/Counter';
 import TemperatureConverter from './components/TemperatureConverter';
 import FlightBooker from './components/FlightBooker';
+import Timer from './components/Timer';
 import './App.css';
 
 class App extends Component {
@@ -13,6 +14,8 @@ class App extends Component {
         <TemperatureConverter />
         <hr />
         <FlightBooker />
+        <hr />
+        <Timer />
       </div>
     );
   }
