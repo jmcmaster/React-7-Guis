@@ -68,8 +68,7 @@ class Timer extends Component {
 
   render() {    
     const { elapsedTime, duration } = this.state
-    const progressBarWidth = Math.min((elapsedTime / duration) * 100, 100);
-    console.log(progressBarWidth)
+    const progressBarWidth = Math.min((elapsedTime / duration) * 100, 100);    
 
     return (
       <div>
